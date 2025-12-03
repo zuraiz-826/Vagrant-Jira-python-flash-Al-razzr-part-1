@@ -1,0 +1,72 @@
+Lab 8: Using url_for and Redirects
+Objectives
+Understand how to navigate web applications seamlessly using url_for.
+Learn how to implement redirects in a web application.
+Comprehend the importance of URL routing in Flask.
+Prerequisites
+Basic understanding of Python programming.
+Familiarity with Flask web framework.
+Have Flask installed in your Python environment.
+Lab Tasks
+Task 1: Define Routes in a Flask Application
+Create a New Flask Application
+
+Open your terminal and create a new directory for your project:
+mkdir flask_lab
+cd flask_lab
+Initialize a new virtual environment:
+python3 -m venv venv
+source venv/bin/activate
+Install Flask in your virtual environment:
+pip install Flask
+Setup the Basic Flask Application Structure
+
+Create a file named app.py in your project directory.
+Add the following code to app.py:
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/home')
+def home():
+    return "Welcome to the Home Page!"
+
+@app.route('/login')
+def login():
+    return "Please Login Here!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+Task 2: Implement url_for and Redirects
+Use url_for for Routing URLs
+
+url_for is a function that helps in generating URLs dynamically based on the name of the function. It is useful for referencing other parts of the application without using hard-coded URLs.
+Implement Redirect Logic
+
+In app.py, update the /login route to redirect to the /home route using url_for and redirect:
+from flask import Flask, redirect, url_for
+
+app = Flask(__name__)
+
+@app.route('/home')
+def home():
+    return "Welcome to the Home Page!"
+
+@app.route('/login')
+def login():
+    # Redirecting to the home page
+    return redirect(url_for('home'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
+Task 3: Test Redirection
+Run the Flask Application
+
+Ensure your virtual environment is active and then run the application:
+python app.py
+Open a web browser and navigate to http://127.0.0.1:5000/login. You should be automatically redirected to the home page, which confirms the proper implementation of redirect and url_for.
+Conclusion
+In this lab, you have learned how to define multiple routes in a Flask application, utilize url_for to dynamically generate URLs within your app, and implement redirects effectively. These are foundational skills for building structured and intuitive web applications using Flask.
+
+By mastering these concepts, you enhance your ability to manage URL routing efficiently, thus contributing to a more maintainable and scalable codebase.
+
